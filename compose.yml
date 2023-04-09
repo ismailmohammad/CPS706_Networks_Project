@@ -1,0 +1,33 @@
+services:
+  server:
+    build:
+      context: ./server
+    ports:
+      - "5000:5000"
+    networks:
+      - visualizer
+     
+  client:
+    build:
+      context: ./client
+    volumes:
+      - staticbuild:/app/out
+    networks:
+      - visualizer
+ 
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - staticbuild:/app/public
+    ports:
+      - “8080:80”
+    networks:
+      - visualizer
+ 
+  networks:
+    visualizer:
+      driver: bridge
+ 
+  volumes:
+    staticbuild:
