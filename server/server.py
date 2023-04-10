@@ -11,8 +11,12 @@ def get_Input():
     print(request)
     startNode = request.form["startNode"]
     endNode = request.form["endNode"]
-    animate_shortest_path(createGraphTing(), startNode, endNode);
-    return "<p>Acknowledged start and end" + startNode + endNode + " </p>";
+    hosts = ('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8')
+    if (startNode in hosts) and (endNode in hosts) :
+        animate_shortest_path(createGraphTing(), startNode, endNode);
+        return "<p>Acknowledged start node " + startNode +" and end node " + endNode + " </p>";
+    else:
+        return "<p>Invalid host. Enter a host from h1 to h8. </p>";
 
 @app.route("/")
 def hello_world():
