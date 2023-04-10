@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_file
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -6,15 +6,19 @@ import time
 
 app = Flask(__name__)
 
+ACCEPTED_ALGORITHMS = ["cent", "dec"];
+
 @app.route("/acceptData", methods=["POST"])
 def get_Input():
     print(request)
-    startNode = request.form["startNode"]
-    endNode = request.form["endNode"]
+    startNode = request.form["startNode"];
+    endNode = request.form["endNode"];
+    algorithmRoute = request.form["algorithmRoute"];
     hosts = ('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8')
-    if (startNode in hosts) and (endNode in hosts) :
-        animate_shortest_path(createGraphTing(), startNode, endNode);
-        return "<p>Acknowledged start node " + startNode +" and end node " + endNode + " </p>";
+    if (startNode in hosts) and (endNode in hosts) and (algorithmRoute in ACCEPTED_ALGORITHMS):
+        animate_shortest_path(createGraph(), startNode, endNode);
+        animationGif = './meow.gif';
+        return send_file(animationGif, mimetype='image/gif');
     else:
         return "<p>Invalid host. Enter a host from h1 to h8. </p>";
 
@@ -22,7 +26,7 @@ def get_Input():
 def hello_world():
     return "<p>Hello, World!</p>"
 
-def createGraphTing():
+def createGraph():
     # create a graph
     G = nx.Graph()
 
