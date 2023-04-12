@@ -19,7 +19,7 @@ export default function centralized() {
 
           <figure className="m-5">
             <img
-              className="m-auto mt-5 mb-5 w-[700px]"
+              className="m-auto mt-5 mb-5 w-[700px] rounded-3xl drop-shadow"
               src="./images/pseudocode.png"
               alt="pseudocode"
             />
@@ -31,7 +31,7 @@ export default function centralized() {
           </figure>
           <figure className="m-5">
             <img
-              className="m-auto mt-5 mb-5 w-[700px]"
+              className="m-auto mt-5 mb-5 w-[700px] rounded-3xl drop-shadow"
               src="./images/centralizedpt1.png"
               alt="centralized_pt1"
             />
@@ -72,7 +72,7 @@ export default function centralized() {
           </p>
           <figure className="m-5">
             <img
-              className="m-auto mt-5 mb-5 w-[700px]"
+              className="m-auto mt-5 mb-5 w-[700px] rounded-3xl drop-shadow"
               src="./images/centralizedpt2.png"
               alt="centralized_pt2"
             />
