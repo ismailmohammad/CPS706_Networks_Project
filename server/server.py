@@ -1,22 +1,36 @@
-from flask import Flask, request
+from flask import Flask, request, send_file, send_from_directory
+from flask_cors import CORS
 
 import networkx as nx
 import matplotlib.pyplot as plt
 import time
+import os
 
 app = Flask(__name__)
+CORS(app)
+
+ACCEPTED_ALGORITHMS = ["centralized", "decentralized", "none"];
+
+# On server start create/clean GIF directory
 
 @app.route("/acceptData", methods=["POST"])
 def get_Input():
     print(request)
-    startNode = request.form["startNode"]
-    endNode = request.form["endNode"]
-    hosts = ('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8')
-    if (startNode in hosts) and (endNode in hosts) :
-        animate_shortest_path(createGraphTing(), startNode, endNode);
-        return "<p>Acknowledged start node " + startNode +" and end node " + endNode + " </p>";
+    startNode = request.form["startNode"]; 
+    endNode = request.form["endNode"];
+    routingAlgorithm = request.form["routingAlgorithm"].lower();
+    hosts = ('A', 'B', 'C', 'D', 'E', 'G')
+    if (startNode in hosts) and (endNode in hosts) and (routingAlgorithm in ACCEPTED_ALGORITHMS):
+        animate_shortest_path(createGraph(), startNode, endNode);
+        animationGifPath = 'meow.gif';
+        return animationGifPath;
     else:
-        return "<p>Invalid host. Enter a host from h1 to h8. </p>";
+        return "<p>Invalid host. Enter a host from A to G, excluding F. </p>";
+
+# No security etc. whatsoever but throwing out those principles for the time being.
+@app.route('/animated/<path:path>')
+def static_proxy(path):
+  return send_from_directory('animated', path)
 
 @app.route("/")
 def hello_world():
@@ -27,7 +41,7 @@ def createGraphTing():
     G = nx.Graph()
 
     # add nodes
-    G.add_nodes_from(['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'])
+    G.add_nodes_from(['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'h1', 'A', 'h3', 'h4', 'h5', 'h6', 'h7', 'D'])
 
     # add edges
     G.add_edge('r1', 'r2', weight=1)
@@ -42,13 +56,13 @@ def createGraphTing():
     G.add_edge('r6', 'r8', weight=2)
     G.add_edge('r7', 'r8', weight=1)
     G.add_edge('h1', 'r1', weight=1)
-    G.add_edge('h2', 'r1', weight=1)
+    G.add_edge('A', 'r1', weight=1)
     G.add_edge('h3', 'r1', weight=1)
     G.add_edge('h4', 'r2', weight=1)
     G.add_edge('h5', 'r2', weight=1)
     G.add_edge('h6', 'r3', weight=1)
     G.add_edge('h7', 'r6', weight=1)
-    G.add_edge('h8', 'r7', weight=1)
+    G.add_edge('D', 'r7', weight=1)
     return G
 
 def animate_shortest_path(G, source, target):
