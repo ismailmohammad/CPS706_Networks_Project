@@ -13,6 +13,8 @@ ACCEPTED_ALGORITHMS = ["centralized", "decentralized", "none"];
 
 # On server start create/clean GIF directory
 
+ACCEPTED_ALGORITHMS = ["cent", "dec"];
+
 @app.route("/acceptData", methods=["POST"])
 def get_Input():
     print(request)
@@ -36,7 +38,7 @@ def static_proxy(path):
 def hello_world():
     return "<p>Hello, World!</p>"
 
-def createGraphTing():
+def createGraph():
     # create a graph
     G = nx.Graph()
 
