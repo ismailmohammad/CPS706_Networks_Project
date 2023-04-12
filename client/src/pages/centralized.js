@@ -52,7 +52,7 @@ export default function centralized() {
               alt="centralized_table2"
             />
             <figcaption className="font-bold">
-              Table 1: Iterating Dijkstra's algorithm, step by step. Note: we do
+              Table 1: Iterating Dijkstra&apos; algorithm, step by step. Note: we do
               not use infinity for any of the values in the table as all of them
               connect to the root node, A.
             </figcaption>
@@ -77,7 +77,7 @@ export default function centralized() {
               alt="centralized_pt2"
             />
             <figcaption className="font-bold">
-              Figure 3: Lowest cost route computed through use of Dijkstra's
+              Figure 3: Lowest cost route computed through use of Dijkstra&apos;
               algorithm.
             </figcaption>
           </figure>
