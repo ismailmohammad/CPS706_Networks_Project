@@ -14,7 +14,7 @@ const groupMembers = [
   { id: 1, name: "Shayan Shahaei", studentNumber: "500872625" },
   { id: 2, name: "Shahzeb Nizam", studentNumber: "500723523" },
   { id: 3, name: "Nahum Eshetu", studentNumber: "500651787" },
-  { id: 4, name: "Dan Nadeem", studentNumber: "500865625" },
+  { id: 4, name: "Dan Nadeem", studentNumber: "500717805" },
   { id: 5, name: "Mohammad Ismail", studentNumber: "500777447" },
 ];
 
