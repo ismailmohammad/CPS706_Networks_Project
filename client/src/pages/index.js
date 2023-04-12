@@ -18,10 +18,17 @@ const groupMembers = [
   { id: 5, name: "Mohammad Ismail", studentNumber: "500777447" },
 ];
 
+const HOSTS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
+const ALGORITHMS = ['Centralized', 'Decentralized'];
+
 export default function Home() {
+
+  const hostOptions = [];
+  HOSTS.forEach(host => hostOptions.push(<option value={host}>${host}</option>))
+
   const [routingData, setRoutingData] = useState({
-    startNode: "A",
-    endNode: "A",
+    startNode: HOSTS[0],
+    endNode: HOSTS[0],
     routingAlgorithm: "Centralized",
   });
 
@@ -97,12 +104,7 @@ export default function Home() {
                   name="startNode"
                   onChange={onFormChange}
                 >
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
-                  <option value="D">D</option>
-                  <option value="E">E</option>
-                  <option value="G">G</option>
+                  {HOSTS.map( host =>  <option value={host}>{host}</option>)}
                 </select>
               </label>
               <br />
@@ -114,12 +116,7 @@ export default function Home() {
                   name="endNode"
                   onChange={onFormChange}
                 >
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
-                  <option value="D">D</option>
-                  <option value="E">E</option>
-                  <option value="G">G</option>
+                  {HOSTS.map( host =>  <option value={host}>{host}</option>)}
                 </select>
               </label>
               <br />
@@ -127,12 +124,11 @@ export default function Home() {
                 Routing Algorithm:{" "}
                 <select
                   className="bg-[#f5f5dc] mb-5 text-black text-center"
-                  id="selectedRoute"
-                  name="selectedRoute"
+                  id="routingAlgorithm"
+                  name="routingAlgorithm"
                   onChange={onFormChange}
                 >
-                  <option value="Centralized">Centralized</option>
-                  <option value="Decentralized">Decentralized</option>
+                 {ALGORITHMS.map(algo => <option value={algo}>{algo}</option>)}
                 </select>
               </label>
               <br />
