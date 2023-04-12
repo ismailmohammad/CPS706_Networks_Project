@@ -5,7 +5,7 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - visualizer
+      - networks-visualizer-tool
      
   client:
     build:
@@ -13,21 +13,11 @@ services:
     volumes:
       - staticbuild:/app/out
     networks:
-      - visualizer
- 
-  nginx:
-    build:
-      context: ./nginx
-    volumes:
-      - staticbuild:/app/public
-    ports:
-      - “8080:80”
-    networks:
-      - visualizer
- 
+      - networks-visualizer-tool
+
   networks:
-    visualizer:
+    networks-visualizer-tool:
       driver: bridge
- 
+      
   volumes:
     staticbuild:
