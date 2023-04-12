@@ -20,6 +20,7 @@ const groupMembers = [
 
 const HOSTS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
 const ALGORITHMS = ['Centralized', 'Decentralized'];
+const defaultImageURL = './images/centralizedpt1.png';
 
 export default function Home() {
 
@@ -69,6 +70,7 @@ export default function Home() {
       })
       .catch((error) => {
         console.log(error);
+        setResultsGif(defaultImageURL);
       })
       .finally(() => setLoading(false));
   };
@@ -94,48 +96,42 @@ export default function Home() {
             be dynamic: routes change rapidly, changes are in response to link
             cost changes
           </p>
-          <div className="m-5 p-5 bg-blue-500 text-white">
+          <div className="m-5 p-5 bg-blue-500 text-white rounded-2xl drop-shadow-md">
             <form onSubmit={handleSubmit} id="routingInformation" method="post">
-              <label>
-                Starting Node:{" "}
+              <label className="font-bold" htmlFor="startNode">Starting Node:{" "}</label>
                 <select
-                  className="bg-[#f5f5dc] mb-5 text-black text-center"
+                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
                   id="startNode"
                   name="startNode"
                   onChange={onFormChange}
                 >
-                  {HOSTS.map( host =>  <option value={host}>{host}</option>)}
+                  {HOSTS.map( host =>  <option key={host} value={host}>{host}</option>)}
                 </select>
-              </label>
               <br />
-              <label>
-                End Node:{" "}
+              <label className="font-bold" htmlFor="endNode">End Node:{" "}</label>
                 <select
-                  className="bg-[#f5f5dc] mb-5 text-black text-center"
+                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
                   id="endNode"
                   name="endNode"
                   onChange={onFormChange}
                 >
-                  {HOSTS.map( host =>  <option value={host}>{host}</option>)}
+                  {HOSTS.map( host =>  <option key={host} value={host}>{host}</option>)}
                 </select>
-              </label>
               <br />
-              <label>
-                Routing Algorithm:{" "}
+              <label className="font-bold" htmlFor="routingAlgorithm">Routing Algorithm:{" "}</label>
                 <select
-                  className="bg-[#f5f5dc] mb-5 text-black text-center"
+                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
                   id="routingAlgorithm"
                   name="routingAlgorithm"
                   onChange={onFormChange}
                 >
-                 {ALGORITHMS.map(algo => <option value={algo}>{algo}</option>)}
+                 {ALGORITHMS.map(algo => <option key={algo} value={algo}>{algo}</option>)}
                 </select>
-              </label>
               <br />
               <input
-                className="bg-[#f5f5dc] text-black pl-2 pr-2"
+                className="cursor-pointer hover:scale-110 transition-transform bg-[#fffbf4] text-black text-center p-2 mb-6 rounded-lg drop-shadow"
                 type="submit"
-                value="Start"
+                value="Generate Visualization"
               ></input>
             </form>
           </div>
@@ -148,7 +144,7 @@ export default function Home() {
           <Link href="/centralized">
             <motion.button
               className="m-5 border
-         bg-blue-500 p-2 rounded-xl tracking-widest
+         bg-blue-500 p-2 rounded-md tracking-widest
           hover:bg-blue-700 text-white uppercase"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -159,7 +155,7 @@ export default function Home() {
           <Link href="/decentralized">
             <motion.button
               className="m-5 border 
-        bg-blue-500 p-2 rounded-xl tracking-widest
+        bg-blue-500 p-2 rounded-md tracking-widest
          hover:bg-blue-700 text-white uppercase"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -168,7 +164,9 @@ export default function Home() {
             </motion.button>
           </Link>
         </motion.div>
-        {!loading && !resultsGif ? <img className="m-auto" src="./images/centralizedpt1.png" /> : loading ? <Image className="m-auto" src={resultsGif} /> : <img className="m-auto" src={resultsGif}  />}
+        {!loading && !resultsGif ? <img className="m-auto rounded-3xl drop-shadow" src={defaultImageURL} /> :
+          loading ? <Image className="m-auto" src={resultsGif} /> :
+            <img className="m-auto rounded-3xl drop-shadow" src={resultsGif} />}
         <div className="m-5">
           Collaborators:
           {groupMembers.map(({ id, name, studentNumber }) => {

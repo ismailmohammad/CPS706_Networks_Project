@@ -35,7 +35,7 @@ export default function decentralized() {
           </p>
           <figure className="m-5">
             <img
-              className="m-auto mt-5 mb-5 w-[700px]"
+              className="m-auto mt-5 mb-5 w-[700px] rounded-3xl drop-shadow"
               src="./images/decentralizedp1.png"
               alt="p1"
             />
