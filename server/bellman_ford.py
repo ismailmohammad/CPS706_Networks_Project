@@ -110,7 +110,7 @@ def bellman_ford(source=sys.argv[1], target=sys.argv[2]):
     images.append(Image.open(f'frame_{counter}.png'))
 
     # Save images as animation
-    images[0].save('gifs\animation.gif', save_all=True, append_images=images[1:], duration=500, loop=0)
+    images[0].save('gif/animation.gif', save_all=True, append_images=images[1:], duration=500, loop=0)
 
     # Delete all frame.png files except graph.png and animation.gif
     for file in os.listdir():
