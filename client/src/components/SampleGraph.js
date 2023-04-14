@@ -5,6 +5,6 @@ import React from "react";
  */
 export default function SampleGraph() {
   return (
-
+    <span>Use Sample Graph instead</span>
   );
 }

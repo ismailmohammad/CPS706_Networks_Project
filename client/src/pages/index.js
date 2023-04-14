@@ -1,11 +1,16 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Head from "next/head";
-import Header from "../components/Header.js";
+import Header from "../components/infomational/Header.js";
 import { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import spinner from "../assets/loadingSpinner.gif";
+import { useRouter } from "next/router";
+import NetworkCustomizer from "@/components/NetworkCustomizer.js";
+import Visualizer from "@/components/Visualizer.js";
+import AnimatedLink from "@/components/ui/AnimatedLink.js";
+import SampleGraph from "@/components/SampleGraph.js";
 
 const groupMembers = [
   { id: 1, name: "Shayan Shahaei", studentNumber: "500872625" },
@@ -17,9 +22,13 @@ const groupMembers = [
 
 const HOSTS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
 const ALGORITHMS = ['Centralized', 'Decentralized'];
-const defaultImageURL = './images/defaultGraph.png';
+const defaultImageURL = './images/defaultGraph.png';  
 
 export default function Home() {
+  // Grab client-side routing parameter for selecting which graph to work with
+  const router = useRouter();
+  const { graphType } = router.query;
+
   const hostOptions = [];
   HOSTS.forEach((host) =>
     hostOptions.push(<option value={host}>${host}</option>)
@@ -83,7 +92,7 @@ export default function Home() {
       <Head>
         <title>CPS706 - Routing Algorithms Visualizer</title>
       </Head>
-      <Header />
+      <Header route={router.asPath} />
       <div className="m-5 text-center">
         <section>
           <h1 className="tracking-widest uppercase m-5 text-xl">
@@ -94,7 +103,21 @@ export default function Home() {
           </p>
           
           <div className="m-5 p-5 bg-blue-500 text-white rounded-2xl drop-shadow-md">
-            <form onSubmit={handleSubmit} id="routingInformation" method="post">
+            { !graphType ? 
+          <div>
+          <h1 className="tracking-widest uppercase m-5 text-xl"> Would you like to learn using our sample graph or customize it? </h1>
+          <motion.div
+          animate={{ x: [100, 0] }}
+          transition={{ type: "spring", stiffness: 100 }}
+          className=""
+        >
+          <AnimatedLink title="Sample Network Graph" route="/?graphType=sample"/>
+          <AnimatedLink title="Customize Network *Experimental*" route="/?graphType=customizable"/>
+        </motion.div>
+        </div> : null } 
+        {/* Display the releveant Component to the user */}
+        {graphType ? graphType === "sample" ? <span>{graphType}</span> && <SampleGraph /> : <span>{graphType}</span> && <NetworkCustomizer /> : null}
+            {/* <form onSubmit={handleSubmit} id="routingInformation" method="post">
               <label className="font-bold drop-shadow-lg" htmlFor="startNode">Starting Node:{" "}</label>
                 <select
                   className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400 hover:scale-110 transition-transform"
@@ -130,7 +153,7 @@ export default function Home() {
                 type="submit"
                 value="Generate Visualization"
               ></input>
-            </form>
+            </form> */}
           </div>
   
         </section>
@@ -147,28 +170,8 @@ export default function Home() {
           <h2 className="tracking-widest uppercase m-5 text-xl">
             Routing Algorithms Information
           </h2>
-          <Link href="/centralized">
-            <motion.button
-              className="m-5 border
-         bg-blue-500 p-2 rounded-md tracking-widest
-          hover:bg-blue-700 text-white uppercase"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              Centralized 
-            </motion.button>
-          </Link>
-          <Link href="/decentralized">
-            <motion.button
-              className="m-5 border 
-        bg-blue-500 p-2 rounded-md tracking-widest
-         hover:bg-blue-700 text-white uppercase"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              Decentralized
-            </motion.button>
-          </Link>
+          <AnimatedLink title="Centralized" route="/centralized" />
+          <AnimatedLink title="Decentralized" route="/decentralized" />
         </motion.div>
         {!loading && !resultsGif ? <img className="m-auto rounded-3xl drop-shadow" src={defaultImageURL} /> :
           loading ? <Image className="m-auto" src={resultsGif} /> :

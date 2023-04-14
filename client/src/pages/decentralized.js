@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Header from "../components/Header.js";
+import Header from "../components/infomational/Header.js";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
