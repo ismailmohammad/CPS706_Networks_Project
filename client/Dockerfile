@@ -6,5 +6,5 @@ COPY ./src ./src
 COPY ./public ./public
 RUN npm install
 RUN npm run build
-RUN npm run start
 EXPOSE 3000
+CMD ["npm", "run", "start"]
