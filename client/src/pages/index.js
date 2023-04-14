@@ -132,7 +132,7 @@ export default function Home() {
         </section>
         <div>
         <p>
-          This webapp is an interactive educational tool that can help students understand network routing algorithms. select start and end host nodes and press the button below to generate a visualization of the routing algorithm on a network.
+          This webapp is an interactive educational tool that can help students understand network routing algorithms. select start and end host nodes and press the button below to generate a visualization of the routing algorithm on a network. You can also press the buttons below to learn more about routing algorithms.
         </p>
         </div>
         <motion.div
