@@ -1,23 +1,14 @@
 services:
   server:
+    container_name: networks-visualizer-server
     build:
       context: ./server
     ports:
       - "5000:5000"
-    networks:
-      - networks-visualizer-tool
      
   client:
+    container_name: networks-visualizer-client
     build:
       context: ./client
-    volumes:
-      - staticbuild:/app/out
-    networks:
-      - networks-visualizer-tool
-
-  networks:
-    networks-visualizer-tool:
-      driver: bridge
-      
-  volumes:
-    staticbuild:
+    ports:
+      - "3000:3000"
