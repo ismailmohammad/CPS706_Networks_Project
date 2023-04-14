@@ -24,6 +24,10 @@ def get_Input():
     animationGifPath = 'animation.gif';
     return animationGifPath;
 
+@app.route('/generate-graph', methods=["POST"])
+def generate_graph():
+    return "sdasd";
+
 @app.route('/gif/<path:path>')
 def static_proxy(path):
   return send_from_directory('gif', path)

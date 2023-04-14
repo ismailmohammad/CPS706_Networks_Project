@@ -11,9 +11,9 @@ export default function AnimatedLink(props) {
   return (
     <Link href={props.route}>
       <motion.button
-        className="m-5 border 
+        className={`m-5 border 
         bg-blue-500 p-2 rounded-md tracking-widest
-         hover:bg-blue-700 text-white uppercase"
+         hover:bg-blue-700 text-white uppercase ${props.className}`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >

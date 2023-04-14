@@ -3,35 +3,15 @@ import matplotlib.pyplot as plt
 import os
 from PIL import Image
 import sys
+import json
 
-# create a graph
-G = nx.Graph()
+def dijkstra(source=sys.argv[1], target=sys.argv[2], graphFilename="graphObjects/sample.json"):
+    # Read the json object from which a graph is to be created from
+    with open(graphFilename, "r") as read_file:
+        graph_data = json.load(read_file)
 
-# add nodes
-G.add_nodes_from(['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'])
-
-# add edges
-G.add_edge('r1', 'r2', weight=1)
-G.add_edge('r1', 'r3', weight=5)
-G.add_edge('r2', 'r3', weight=2)
-G.add_edge('r2', 'r4', weight=3)
-G.add_edge('r3', 'r5', weight=2)
-G.add_edge('r4', 'r5', weight=1)
-G.add_edge('r4', 'r6', weight=4)
-G.add_edge('r5', 'r7', weight=3)
-G.add_edge('r6', 'r7', weight=4)
-G.add_edge('r6', 'r8', weight=2)
-G.add_edge('r7', 'r8', weight=1)
-G.add_edge('h1', 'r1', weight=1)
-G.add_edge('h2', 'r1', weight=1)
-G.add_edge('h3', 'r1', weight=1)
-G.add_edge('h4', 'r2', weight=1)
-G.add_edge('h5', 'r2', weight=1)
-G.add_edge('h6', 'r3', weight=1)
-G.add_edge('h7', 'r6', weight=1)
-G.add_edge('h8', 'r7', weight=1)
-
-def dijkstra(source=sys.argv[1], target=sys.argv[2]):
+    # Create Graph from json object
+    G = nx.node_link_graph(graph_data);
 
     # Initialize distances and previous nodes
     distances = {node: float('inf') for node in G.nodes()}
