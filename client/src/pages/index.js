@@ -15,9 +15,9 @@ const groupMembers = [
   { id: 5, name: "Mohammad Ismail", studentNumber: "500777447" },
 ];
 
-const HOSTS = ["h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8"];
-const ALGORITHMS = ["Centralized", "Decentralized"];
-const defaultImageURL = "./images/centralizedpt1.png";
+const HOSTS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
+const ALGORITHMS = ['Centralized', 'Decentralized'];
+const defaultImageURL = './images/defaultGraph.png';
 
 export default function Home() {
   const hostOptions = [];
