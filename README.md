@@ -5,7 +5,7 @@ Group 26
 
 Installation Instructions
 
-The applicationn has been built using ReactJS and Flask. 
+The application has been built using ReactJS and Flask. 
 Scripts have been included for both first time setup and to run the application.
 
 To install the application:
@@ -14,10 +14,17 @@ To install the application:
 2) navigate to the root project directory
 3) Run the install script
 
-./install.bat
+`./install.bat`
 
-This is required to install node modules and python dependancies
+This is required to install node modules and python dependencies
 
 4) Run the Run script
 
-./run.bat
+`./run.bat`
+
+# Containerization
+If you have docker & by extension docker compose installed, you may simply run the following docker commands from the root of this repository
+```
+docker compose build
+docker compose -f compose.yml up
+```
