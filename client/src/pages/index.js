@@ -9,7 +9,7 @@ import spinner from "../assets/loadingSpinner.gif";
 
 const groupMembers = [
   { id: 1, name: "Shayan Shahaei", studentNumber: "***REMOVED***" },
-  { id: 2, name: "Shahzeb Nizam", studentNumber: "500723523" },
+  { id: 2, name: "Shahzeb Nizam", studentNumber: "***REMOVED***" },
   { id: 3, name: "Nahum Eshetu", studentNumber: "***REMOVED***" },
   { id: 4, name: "Dan Nadeem", studentNumber: "***REMOVED***" },
   { id: 5, name: "Mohammad Ismail", studentNumber: "***REMOVED***" },
@@ -132,7 +132,7 @@ export default function Home() {
         </section>
         <div>
         <p>
-          The purpose of routing algorithms is to determine efficient paths (where efficiency may be measured in terms of minimal delay, degree of congestion, etc) from one host to another through a network of routers. The most efficient path may be the one that results in minimal delay, economic cost, minimal congestion, or a combination of these. The path is defined as the sequence of routers packets traversing from given initial source host to a final destination host. Furthermore, these routes can either be static – where routes change slowly over time, or dynamic – where routes change rapidly, and are in response to changes in link costs between nodes/routers.
+          This webapp is an interactive educational tool that can help students understand network routing algorithms. select start and end host nodes and press the button below to generate a visualization of the routing algorithm on a network.
         </p>
         </div>
         <motion.div
