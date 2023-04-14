@@ -11,7 +11,6 @@ CORS(app)
 
 @app.route("/", methods=["POST"])
 def get_Input():
-    timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     startNode = request.form["startNode"]; 
     endNode = request.form["endNode"];
     routingAlgorithm = request.form["routingAlgorithm"].lower();
@@ -22,7 +21,7 @@ def get_Input():
         os.system(f'python djikstra.py {startNode} {endNode}')
     else:
         os.system(f'python bellman_ford.py {startNode} {endNode}')
-    animationGifPath = f'animation.gif?{timestamp}';
+    animationGifPath = 'animation.gif';
     return animationGifPath;
 
 @app.route('/gif/<path:path>')

@@ -33,6 +33,7 @@ export default function Home() {
 
   const [resultsGif, setResultsGif] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [randomNum, setRandomNum] = useState(444);
 
   const onFormChange = (event) => {
     setRoutingData((routingData) => ({
@@ -47,6 +48,9 @@ export default function Home() {
     // Set image to loading spinner
     setResultsGif(spinner);
     setLoading(true);
+    // Generate unique random number for refresh hack
+    let refreshNumber = Math.random() * 444007;
+    while (refreshNumber === randomNum ) refreshNumber = Math.random() * 444007; 
 
     let data = new FormData();
     for (const [key, value] of Object.entries(routingData)) {
@@ -64,14 +68,14 @@ export default function Home() {
     axios
       .request(config)
       .then((response) => {
-        setResultsGif(`http://localhost:5000/gif/${response.data}`);
-        setLoading(false);
+        setRandomNum(refreshNumber);
+        setResultsGif(`http://localhost:5000/gif/${response.data}?refreshHack=${refreshNumber}`);
       })
       .catch((error) => {
         console.log(error);
         setResultsGif(defaultImageURL);
-        setLoading(false);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
