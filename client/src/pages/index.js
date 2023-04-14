@@ -87,14 +87,7 @@ export default function Home() {
             Routing Algorithms
           </h1>
           <p>
-            Purpose is to determine efficient paths from sending hosts to
-            receiving host, through a network of routers (paraphrase this) Path
-            is defined as the sequence of routers packets traversing from given
-            initial source host to final destination host Efficient in terms of
-            least cost, fastest, least congested (depends on what we are
-            prioritizing) - can be static: routes change slowly over time - can
-            be dynamic: routes change rapidly, changes are in response to link
-            cost changes
+          The purpose of routing algorithms is to determine efficient paths (where efficiency may be measured in terms of minimal delay, degree of congestion, etc) from one host to another through a network of routers. The most efficient path may be the one that results in minimal delay, economic cost, minimal congestion, or a combination of these. The path is defined as the sequence of routers packets traversing from given initial source host to a final destination host. Furthermore, these routes can either be static – where routes change slowly over time, or dynamic – where routes change rapidly, and are in response to changes in link costs between nodes/routers.
           </p>
           <div className="m-5 p-5 bg-blue-500 text-white rounded-2xl drop-shadow-md">
             <form onSubmit={handleSubmit} id="routingInformation" method="post">
