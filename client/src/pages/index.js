@@ -81,13 +81,13 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>CPS706 Project</title>
+        <title>CPS706 - Routing Algorithms Visualizer</title>
       </Head>
       <Header />
       <div className="m-5 text-center">
         <section>
           <h1 className="tracking-widest uppercase m-5 text-xl">
-            Routing Algorithms
+            Routing Algorithms Visualization Tool
           </h1>
           <p>
           The purpose of routing algorithms is to determine efficient paths (where efficiency may be measured in terms of minimal delay, degree of congestion, etc) from one host to another through a network of routers. The most efficient path may be the one that results in minimal delay, economic cost, minimal congestion, or a combination of these. The path is defined as the sequence of routers packets traversing from given initial source host to a final destination host. Furthermore, these routes can either be static – where routes change slowly over time, or dynamic – where routes change rapidly, and are in response to changes in link costs between nodes/routers.
@@ -95,9 +95,9 @@ export default function Home() {
           
           <div className="m-5 p-5 bg-blue-500 text-white rounded-2xl drop-shadow-md">
             <form onSubmit={handleSubmit} id="routingInformation" method="post">
-              <label className="font-bold" htmlFor="startNode">Starting Node:{" "}</label>
+              <label className="font-bold drop-shadow-lg" htmlFor="startNode">Starting Node:{" "}</label>
                 <select
-                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
+                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400 hover:scale-110 transition-transform"
                   id="startNode"
                   name="startNode"
                   onChange={onFormChange}
@@ -105,9 +105,9 @@ export default function Home() {
                   {HOSTS.map( host =>  <option key={host} value={host}>{host}</option>)}
                 </select>
               <br />
-              <label className="font-bold" htmlFor="endNode">End Node:{" "}</label>
+              <label className="font-bold drop-shadow-lg" htmlFor="endNode">End Node:{" "}</label>
                 <select
-                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
+                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400 hover:scale-110 transition-transform"
                   id="endNode"
                   name="endNode"
                   onChange={onFormChange}
@@ -115,9 +115,9 @@ export default function Home() {
                   {HOSTS.map( host =>  <option key={host} value={host}>{host}</option>)}
                 </select>
               <br />
-              <label className="font-bold" htmlFor="routingAlgorithm">Routing Algorithm:{" "}</label>
+              <label className="font-bold drop-shadow-lg" htmlFor="routingAlgorithm">Routing Algorithm:{" "}</label>
                 <select
-                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
+                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400 hover:scale-110 transition-transform"
                   id="routingAlgorithm"
                   name="routingAlgorithm"
                   onChange={onFormChange}
@@ -144,6 +144,9 @@ export default function Home() {
           transition={{ type: "spring", stiffness: 100 }}
           className=""
         >
+          <h2 className="tracking-widest uppercase m-5 text-xl">
+            Routing Algorithms Information
+          </h2>
           <Link href="/centralized">
             <motion.button
               className="m-5 border
@@ -152,7 +155,7 @@ export default function Home() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              Centralized
+              Centralized 
             </motion.button>
           </Link>
           <Link href="/decentralized">
