@@ -72,8 +72,8 @@ def bellman_ford(source=sys.argv[1], target=sys.argv[2]):
         # Increment counter
         counter += 1
 
-        # Stop if destination node is reached
-        if current == destination:
+        # Stop if target node is reached
+        if current == target:
             break
 
         # Update distances to neighbors of current node
@@ -94,8 +94,8 @@ def bellman_ford(source=sys.argv[1], target=sys.argv[2]):
                 # Increment counter
                 counter += 1
 
-    # Construct shortest path from source to destination
-    path = [destination]
+    # Construct shortest path from source to target
+    path = [target]
     while path[-1] != source:
         path.append(previous[path[-1]])
     path = path[::-1]
