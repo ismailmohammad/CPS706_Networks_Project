@@ -15,9 +15,9 @@ const groupMembers = [
   { id: 5, name: "Mohammad Ismail", studentNumber: "***REMOVED***" },
 ];
 
-const HOSTS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
-const ALGORITHMS = ['Centralized', 'Decentralized'];
-const defaultImageURL = './images/defaultGraph.png';
+const HOSTS = ["h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8"];
+const ALGORITHMS = ["Centralized", "Decentralized"];
+const defaultImageURL = "./images/defaultGraph.png";
 
 export default function Home() {
   const hostOptions = [];
@@ -50,7 +50,7 @@ export default function Home() {
     setLoading(true);
     // Generate unique random number for refresh hack
     let refreshNumber = Math.random() * 444007;
-    while (refreshNumber === randomNum ) refreshNumber = Math.random() * 444007; 
+    while (refreshNumber === randomNum) refreshNumber = Math.random() * 444007;
 
     let data = new FormData();
     for (const [key, value] of Object.entries(routingData)) {
@@ -69,7 +69,9 @@ export default function Home() {
       .request(config)
       .then((response) => {
         setRandomNum(refreshNumber);
-        setResultsGif(`http://localhost:5000/gif/${response.data}?refreshHack=${refreshNumber}`);
+        setResultsGif(
+          `http://localhost:5000/gif/${response.data}?refreshHack=${refreshNumber}`
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -86,44 +88,71 @@ export default function Home() {
       <Header />
       <div className="m-5 text-center">
         <section>
-          <h1 className="tracking-widest uppercase m-5 text-xl">
+          <h1 className="tracking-widest uppercase m-5 text-xl font-bold">
             Routing Algorithms
           </h1>
           <p>
-          The purpose of routing algorithms is to determine efficient paths (where efficiency may be measured in terms of minimal delay, degree of congestion, etc) from one host to another through a network of routers. The most efficient path may be the one that results in minimal delay, economic cost, minimal congestion, or a combination of these. The path is defined as the sequence of routers packets traversing from given initial source host to a final destination host. Furthermore, these routes can either be static – where routes change slowly over time, or dynamic – where routes change rapidly, and are in response to changes in link costs between nodes/routers.
+            The purpose of routing algorithms is to determine efficient paths
+            (where efficiency may be measured in terms of minimal delay, degree
+            of congestion, etc) from one host to another through a network of
+            routers. The most efficient path may be the one that results in
+            minimal delay, economic cost, minimal congestion, or a combination
+            of these. The path is defined as the sequence of routers packets
+            traversing from given initial source host to a final destination
+            host. Furthermore, these routes can either be static – where routes
+            change slowly over time, or dynamic – where routes change rapidly,
+            and are in response to changes in link costs between nodes/routers.
           </p>
-          
-          <div className="m-5 p-5 bg-blue-500 text-white rounded-2xl drop-shadow-md">
+
+          <div className="m-auto mt-5 mb-5 p-5 bg-blue-500 text-white rounded-2xl drop-shadow-md flex w-60">
             <form onSubmit={handleSubmit} id="routingInformation" method="post">
-              <label className="font-bold" htmlFor="startNode">Starting Node:{" "}</label>
-                <select
-                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
-                  id="startNode"
-                  name="startNode"
-                  onChange={onFormChange}
-                >
-                  {HOSTS.map( host =>  <option key={host} value={host}>{host}</option>)}
-                </select>
+              <label className="font-bold" htmlFor="startNode">
+                Starting Node:{" "}
+              </label>
+              <select
+                className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
+                id="startNode"
+                name="startNode"
+                onChange={onFormChange}
+              >
+                {HOSTS.map((host) => (
+                  <option key={host} value={host}>
+                    {host}
+                  </option>
+                ))}
+              </select>
               <br />
-              <label className="font-bold" htmlFor="endNode">End Node:{" "}</label>
-                <select
-                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
-                  id="endNode"
-                  name="endNode"
-                  onChange={onFormChange}
-                >
-                  {HOSTS.map( host =>  <option key={host} value={host}>{host}</option>)}
-                </select>
+              <label className="font-bold" htmlFor="endNode">
+                End Node:{" "}
+              </label>
+              <select
+                className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
+                id="endNode"
+                name="endNode"
+                onChange={onFormChange}
+              >
+                {HOSTS.map((host) => (
+                  <option key={host} value={host}>
+                    {host}
+                  </option>
+                ))}
+              </select>
               <br />
-              <label className="font-bold" htmlFor="routingAlgorithm">Routing Algorithm:{" "}</label>
-                <select
-                  className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
-                  id="routingAlgorithm"
-                  name="routingAlgorithm"
-                  onChange={onFormChange}
-                >
-                 {ALGORITHMS.map(algo => <option key={algo} value={algo}>{algo}</option>)}
-                </select>
+              <label className="font-bold" htmlFor="routingAlgorithm">
+                Routing Algorithm:{" "}
+              </label>
+              <select
+                className="cursor-pointer bg-[#f5f5dc] mb-5 text-white text-center p-2 mb-6 text-sm border border-gray-600 rounded-lg bg-gray-50 bg-gray-700 placeholder-gray-400"
+                id="routingAlgorithm"
+                name="routingAlgorithm"
+                onChange={onFormChange}
+              >
+                {ALGORITHMS.map((algo) => (
+                  <option key={algo} value={algo}>
+                    {algo}
+                  </option>
+                ))}
+              </select>
               <br />
               <input
                 className="cursor-pointer hover:scale-110 transition-transform bg-[#fffbf4] text-black text-center p-2 mb-6 rounded-lg drop-shadow"
@@ -132,12 +161,15 @@ export default function Home() {
               ></input>
             </form>
           </div>
-  
         </section>
         <div>
-        <p>
-          This webapp is an interactive educational tool that can help students understand network routing algorithms. select start and end host nodes and press the button below to generate a visualization of the routing algorithm on a network. You can also press the buttons below to learn more about routing algorithms.
-        </p>
+          <p>
+            This webapp is an interactive educational tool that can help
+            students understand network routing algorithms. select start and end
+            host nodes and press the button below to generate a visualization of
+            the routing algorithm on a network. You can also press the buttons
+            below to learn more about routing algorithms.
+          </p>
         </div>
         <motion.div
           animate={{ x: [100, 0] }}
@@ -167,9 +199,16 @@ export default function Home() {
             </motion.button>
           </Link>
         </motion.div>
-        {!loading && !resultsGif ? <img className="m-auto rounded-3xl drop-shadow" src={defaultImageURL} /> :
-          loading ? <Image className="m-auto" src={resultsGif} /> :
-            <img className="m-auto rounded-3xl drop-shadow" src={resultsGif} />}
+        {!loading && !resultsGif ? (
+          <img
+            className="m-auto rounded-3xl drop-shadow"
+            src={defaultImageURL}
+          />
+        ) : loading ? (
+          <Image className="m-auto" src={resultsGif} />
+        ) : (
+          <img className="m-auto rounded-3xl drop-shadow" src={resultsGif} />
+        )}
         <div className="m-5">
           Collaborators:
           {groupMembers.map(({ id, name, studentNumber }) => {
