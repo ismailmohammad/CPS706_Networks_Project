@@ -6,10 +6,8 @@ import matplotlib.pyplot as plt
 import time
 import os
 
-
 app = Flask(__name__)
 CORS(app)
-
 
 @app.route("/", methods=["POST"])
 def get_Input():
