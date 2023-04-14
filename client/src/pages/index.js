@@ -58,7 +58,7 @@ export default function Home() {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:5000/acceptData",
+      url: "http://localhost:5000/",
       headers: {},
       data: data,
     };
@@ -66,7 +66,7 @@ export default function Home() {
     axios
       .request(config)
       .then((response) => {
-        setResultsGif(`http://localhost:5000/animated/${response.data}`);
+        setResultsGif(`http://localhost:5000/gif/animation.gif`);
       })
       .catch((error) => {
         console.log(error);
