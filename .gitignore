@@ -1,6 +1,8 @@
 # Ignore Generated images
 /server/*/*.gif
 /server/*.png
+/server/graphObjects/*.json
+/server/graphObjects/*.png
 
 
 # Byte-compiled / optimized / DLL files

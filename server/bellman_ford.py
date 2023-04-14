@@ -5,7 +5,7 @@ from PIL import Image
 import sys
 import json
 
-def bellman_ford(source=sys.argv[1], target=sys.argv[2], graphFilename="graphObjects/sample.json"):
+def bellman_ford(source=sys.argv[1], target=sys.argv[2], graphFilename=sys.argv[3]):
     # Read the json object from which a graph is to be created from
     with open(graphFilename, "r") as read_file:
         graph_data = json.load(read_file)

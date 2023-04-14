@@ -21,12 +21,13 @@ export default function Visualizer(props) {
     startNode: props.hosts[0],
     endNode: props.hosts[0],
     routingAlgorithm: "Centralized",
+    graphURL: props.graphURL
   });
 
   const onFormChange = (event) => {
     setRoutingData((routingData) => ({
       ...routingData,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     }));
   };
 

@@ -12,8 +12,8 @@ export default function SampleGraph(props) {
 
   return (
     <>
-    <AnimatedLink route="/?graphType=customizable" title="Try Customizing Graph Instead" />
-    <Visualizer setLoading={props.setLoading} updateImage={props.setResultsGif} hosts={HOSTS}/>
+    <AnimatedLink route="/?graphType=customizable" title="Try Customizable Graph Instead" />
+    <Visualizer graphURL="" setLoading={props.setLoading} updateImage={props.setResultsGif} hosts={HOSTS}/>
     </>
   );
 }

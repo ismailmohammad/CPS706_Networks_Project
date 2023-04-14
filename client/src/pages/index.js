@@ -58,7 +58,9 @@ export default function Home() {
         </motion.div>
         </div> : null } 
         {/* Display the relevant Component to the user */}
-        {graphType ? graphType === "sample" ? <span>{graphType}</span> && <SampleGraph setLoading={setLoading} setResultsGif={setResultsGif} /> : <span>{graphType}</span> && <NetworkCustomizer /> : null}
+            {graphType ? graphType === "sample" ?
+              <span>{graphType}</span> && <SampleGraph setLoading={setLoading} setResultsGif={setResultsGif} /> :
+              <span>{graphType}</span> && <NetworkCustomizer setLoading={setLoading} updateImage={setResultsGif} /> : null}
         </div>
 
 
