@@ -37,6 +37,9 @@ def bellman_ford(source=sys.argv[1], target=sys.argv[2]):
     distances[source] = 0
     previous = {node: None for node in G.nodes()}
 
+    # Keep track of unvisited nodes
+    unvisited = set(G.nodes())
+
     # Draw initial graph
     pos = nx.spring_layout(G)
     node_colors = ['red' if node != source else 'green' for node in G.nodes()]
@@ -53,16 +56,35 @@ def bellman_ford(source=sys.argv[1], target=sys.argv[2]):
     counter = 0
 
     # Iterate until all nodes are visited
-    for i in range(len(G.nodes())-1):
-        for edge in G.edges():
-            u, v = edge
-            weight = G.edges[u, v]['weight']
-            if distances[u] + weight < distances[v]:
-                distances[v] = distances[u] + weight
-                previous[v] = u
+    while unvisited:
+        # Find unvisited node with shortest distance
+        current = min(unvisited, key=lambda node: distances[node])
+        unvisited.remove(current)
+
+        # Highlight current node
+        node_colors = ['red' if node != current else 'green' for node in G.nodes()]
+        nx.draw(G, pos, with_labels=True, font_weight='bold', node_color=node_colors)
+
+        # Pause briefly and save image
+        plt.savefig(f'frame_{counter}.png')
+        images.append(Image.open(f'frame_{counter}.png'))
+
+        # Increment counter
+        counter += 1
+
+        # Stop if destination node is reached
+        if current == destination:
+            break
+
+        # Update distances to neighbors of current node
+        for neighbor in G.neighbors(current):
+            distance = distances[current] + G.edges[current, neighbor]['weight']
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                previous[neighbor] = current
 
                 # Highlight edge to neighbor
-                edge_colors = ['green' if edge == (u, v) else 'black' for edge in G.edges()]
+                edge_colors = ['green' if edge == (current, neighbor) else 'black' for edge in G.edges()]
                 nx.draw(G, pos, with_labels=True, font_weight='bold', node_color=node_colors, edge_color=edge_colors)
 
                 # Pause briefly and save image
@@ -72,13 +94,11 @@ def bellman_ford(source=sys.argv[1], target=sys.argv[2]):
                 # Increment counter
                 counter += 1
 
-    # Construct shortest path from source to target
+    # Construct shortest path from source to destination
     path = [destination]
-    node = destination
-    while previous[node] is not None:
-        path.append(previous[node])
-        node = previous[node]
-    path.reverse()
+    while path[-1] != source:
+        path.append(previous[path[-1]])
+    path = path[::-1]
 
     # Highlight nodes and edges on the shortest path
     node_colors = ['green' if node in path else 'red' for node in G.nodes()]
@@ -89,7 +109,8 @@ def bellman_ford(source=sys.argv[1], target=sys.argv[2]):
     plt.savefig(f'frame_{counter}.png')
     images.append(Image.open(f'frame_{counter}.png'))
 
-    images[0].save('gif/animation.gif', save_all=True, append_images=images[1:], duration=500, loop=0)
+    # Save images as animation
+    images[0].save('gifs\animation.gif', save_all=True, append_images=images[1:], duration=500, loop=0)
 
     # Delete all frame.png files except graph.png and animation.gif
     for file in os.listdir():
