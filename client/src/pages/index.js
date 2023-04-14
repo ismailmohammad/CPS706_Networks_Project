@@ -66,7 +66,7 @@ export default function Home() {
     axios
       .request(config)
       .then((response) => {
-        setResultsGif(`http://localhost:5000/gif/animation.gif`);
+        setResultsGif(`http://localhost:5000/gif/${response.data}`);
       })
       .catch((error) => {
         console.log(error);
