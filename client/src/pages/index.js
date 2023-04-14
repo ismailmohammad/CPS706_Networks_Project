@@ -1,14 +1,11 @@
-import { Inter } from "@next/font/google";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Head from "next/head";
 import Header from "../components/Header.js";
 import { useState } from "react";
 import axios from "axios";
-import Image from "next/image"
+import Image from "next/image";
 import spinner from "../assets/loadingSpinner.gif";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const groupMembers = [
   { id: 1, name: "Shayan Shahaei", studentNumber: "500872625" },
@@ -18,14 +15,15 @@ const groupMembers = [
   { id: 5, name: "Mohammad Ismail", studentNumber: "500777447" },
 ];
 
-const HOSTS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
-const ALGORITHMS = ['Centralized', 'Decentralized'];
-const defaultImageURL = './images/centralizedpt1.png';
+const HOSTS = ["h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8"];
+const ALGORITHMS = ["Centralized", "Decentralized"];
+const defaultImageURL = "./images/centralizedpt1.png";
 
 export default function Home() {
-
   const hostOptions = [];
-  HOSTS.forEach(host => hostOptions.push(<option value={host}>${host}</option>))
+  HOSTS.forEach((host) =>
+    hostOptions.push(<option value={host}>${host}</option>)
+  );
 
   const [routingData, setRoutingData] = useState({
     startNode: HOSTS[0],
@@ -39,9 +37,9 @@ export default function Home() {
   const onFormChange = (event) => {
     setRoutingData((routingData) => ({
       ...routingData,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -67,12 +65,13 @@ export default function Home() {
       .request(config)
       .then((response) => {
         setResultsGif(`http://localhost:5000/gif/${response.data}`);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
         setResultsGif(defaultImageURL);
-      })
-      .finally(() => setLoading(false));
+        setLoading(false);
+      });
   };
 
   return (
@@ -89,6 +88,7 @@ export default function Home() {
           <p>
           The purpose of routing algorithms is to determine efficient paths (where efficiency may be measured in terms of minimal delay, degree of congestion, etc) from one host to another through a network of routers. The most efficient path may be the one that results in minimal delay, economic cost, minimal congestion, or a combination of these. The path is defined as the sequence of routers packets traversing from given initial source host to a final destination host. Furthermore, these routes can either be static – where routes change slowly over time, or dynamic – where routes change rapidly, and are in response to changes in link costs between nodes/routers.
           </p>
+          
           <div className="m-5 p-5 bg-blue-500 text-white rounded-2xl drop-shadow-md">
             <form onSubmit={handleSubmit} id="routingInformation" method="post">
               <label className="font-bold" htmlFor="startNode">Starting Node:{" "}</label>
@@ -128,7 +128,13 @@ export default function Home() {
               ></input>
             </form>
           </div>
+  
         </section>
+        <div>
+        <p>
+          The purpose of routing algorithms is to determine efficient paths (where efficiency may be measured in terms of minimal delay, degree of congestion, etc) from one host to another through a network of routers. The most efficient path may be the one that results in minimal delay, economic cost, minimal congestion, or a combination of these. The path is defined as the sequence of routers packets traversing from given initial source host to a final destination host. Furthermore, these routes can either be static – where routes change slowly over time, or dynamic – where routes change rapidly, and are in response to changes in link costs between nodes/routers.
+        </p>
+        </div>
         <motion.div
           animate={{ x: [100, 0] }}
           transition={{ type: "spring", stiffness: 100 }}
