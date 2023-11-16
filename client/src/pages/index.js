@@ -8,11 +8,11 @@ import Image from "next/image";
 import spinner from "../assets/loadingSpinner.gif";
 
 const groupMembers = [
-  { id: 1, name: "Shayan Shahaei", studentNumber: "***REMOVED***" },
-  { id: 2, name: "Shahzeb Nizam", studentNumber: "***REMOVED***" },
-  { id: 3, name: "Nahum Eshetu", studentNumber: "***REMOVED***" },
-  { id: 4, name: "Dan Nadeem", studentNumber: "***REMOVED***" },
-  { id: 5, name: "Mohammad Ismail", studentNumber: "***REMOVED***" },
+  { id: 1, name: "Shayan Shahaei", studentNumber: "**REMOVED**" },
+  { id: 2, name: "Shahzeb Nizam", studentNumber: "**REMOVED**" },
+  { id: 3, name: "Nahum Eshetu", studentNumber: "**REMOVED**" },
+  { id: 4, name: "Dan Nadeem", studentNumber: "**REMOVED**" },
+  { id: 5, name: "Mohammad Ismail", studentNumber: "**REMOVED**" },
 ];
 
 const HOSTS = ["h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8"];
